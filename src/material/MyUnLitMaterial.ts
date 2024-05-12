@@ -9,7 +9,7 @@ export class MyUnLitMaterial extends Material {
         let shader = new Shader();
         shader.addRenderPass(pass);
         this.shader = shader;
-        shader.setUniformColor(`baseColor1`, new Color(1, 1, 0, 1));
+        shader.setUniformColor(`baseColor1`, new Color(0, 1, 0, 1));
         shader.setUniformFloat("test", 0);
         //pass.noticeValueChange();
     }

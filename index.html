@@ -1,13 +1,91 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+    <title>Orillusion Shader Samples</title>
+    <style>
+        html,
+        body {
+            font-family: Avenir,Helvetica,Arial,sans-serif;
+            -webkit-font-smoothing: antialiased;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        .menu{
+            width: 200px;
+            height: 100%;
+            border-right: 1px solid #888;
+            overflow: auto;
+            padding: 0 10px;
+        }
+        .menu > a{
+            display: block;
+            margin: 5px 0;
+            color: #045b88;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+        a.active{
+            color: red;
+        }
+        iframe{
+            flex-grow: 1;
+            border: none;
+        }
+        .src{
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            height: 40px;
+            width: 40px;
+            background: #fff;
+            text-align: center;
+            font-size: 16px;
+            line-height: 40px;
+            border-radius: 50%;
+            border:none;
+            opacity: 0.6;
+            cursor: pointer;
+            text-decoration: none !important;
+        }
+        .src:hover{
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <h3>Orillusion Shader</h3>
+        <a href="https://github.com/OriIIusion/ORI_Shader" target="_blank">Github</a>
+        <hr>
+        <a class="sample active" target="MyUnLit">MyUnLit</a>
+    </div>
+    <iframe></iframe>
+    <a class="src" target="_blank">&lt; &gt;</a>
+    <script>
+        const iframe = document.querySelector('iframe')
+        const button = document.querySelector('.src')
+        const samples = document.querySelectorAll('.sample')
+        for(let sample of samples){
+            sample.addEventListener('click', ()=>{
+                window.location.hash = sample.target
+                iframe.src = './samples/' + sample.target + '.html'
+                button.href = 'https://github.com/OriIIusion/ORI_Shader/tree/main/src/scripts/' + sample.target + '.ts'
+                document.querySelector('.active').classList.remove('active')
+                sample.classList.add('active')
+            })
+        }
+        
+        if(window.location.hash)
+            document.querySelector(`[target=${window.location.hash.slice(1)}]`).click()
+        else
+            document.querySelector('.sample.active').click()
+    </script>
+</body>
 </html>

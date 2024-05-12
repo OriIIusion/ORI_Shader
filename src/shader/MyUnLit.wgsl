@@ -41,5 +41,5 @@ fn VertMain(@builtin(instance_index) index : u32,@location(0) position : vec3<f3
 @fragment
 fn FragMain() -> @location(0) vec4 < f32> {
     var uni = materialUniform.baseColor1;
-    return uni*materialUniform.test;
+    return uni;
 }
