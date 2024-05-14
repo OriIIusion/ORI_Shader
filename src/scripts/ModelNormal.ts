@@ -1,8 +1,7 @@
 import { BoxGeometry, Camera3D, Engine3D, HoverCameraController, MeshRenderer, Object3D, Scene3D, View3D, Color, SolidColorSky, SkyRenderer, SphereGeometry, CylinderGeometry } from "@orillusion/core";
 import { Stats } from "@orillusion/stats";
-import { MyUnLitMaterial } from "../material/MyUnLitMaterial";
+import { ModelNormalMaterial } from "../material/ModelNormalMaterial";
 import { registerShader } from "../shader/registerShader";
-import dat from "dat.gui";
 
 class MyUnLit {
     async run() {
@@ -27,7 +26,7 @@ class MyUnLit {
         //相机添加到场景中
         scene.addChild(cameraObj);
 
-        let mat = new MyUnLitMaterial();
+        let mat = new ModelNormalMaterial();
         {
             let box = new Object3D();
             box.x = -10;
@@ -51,17 +50,6 @@ class MyUnLit {
             mr.materials = [mat, mat, mat];
             scene.addChild(cylinder);
         }
-
-        //添加修改材质颜色的面板
-        const gui = new dat.GUI();
-        const MyUnLit = gui.addFolder("MyUnLit");
-        let obj = {
-            baseColor: [255, 255, 255]
-        };
-        MyUnLit.addColor(obj, "baseColor").onChange((v) => {
-            mat.baseColor = new Color(v[0] / 255, v[1] / 255, v[2] / 255);
-        });
-        MyUnLit.open();
 
         //创建View3D对象
         let view = new View3D();

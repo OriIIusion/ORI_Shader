@@ -26,10 +26,10 @@
 </head>
 <body>
     <div id="title">
-        最简单的无光shader<br>
-        顶点着色器中 只做了mvp变换(必需的)<br>
-        片元着色器中 将材质传入的颜色赋予模型
+        模型的法线作为颜色输出<br>
+        因为法线的值可能为负 将负值赋予颜色时 会自动截取为0<br>
+        所以有些面会是黑色
     </div>
-    <script type="module" src="/src/scripts/MyUnLit.ts"></script>
+    <script type="module" src="/src/scripts/ModelNormal.ts"></script>
 </body>
 </html>
