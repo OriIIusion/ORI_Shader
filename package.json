@@ -12,8 +12,7 @@
     "@orillusion/core": "^0.7.2",
     "@orillusion/stats": "^0.2.2",
     "@types/dat.gui": "^0.7.13",
-    "dat.gui": "^0.7.9",
-    "vue": "^3.4.21"
+    "dat.gui": "^0.7.9"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
