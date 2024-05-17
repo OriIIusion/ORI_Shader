@@ -1,4 +1,4 @@
-import { Camera3D, Engine3D, HoverCameraController, MeshRenderer, Object3D, Scene3D, View3D, Color, SolidColorSky, SkyRenderer, PlaneGeometry, Time } from "@orillusion/core";
+import { Camera3D, Engine3D, HoverCameraController, MeshRenderer, Object3D, Scene3D, View3D, Color, SolidColorSky, SkyRenderer, PlaneGeometry } from "@orillusion/core";
 import { Stats } from "@orillusion/stats";
 import { MouseAndTimeMaterial } from "../material/MouseAndTimeMaterial";
 import { registerShader } from "../shader/registerShader";
@@ -6,11 +6,7 @@ import { registerShader } from "../shader/registerShader";
 class ScreenCoord {
     async run() {
         //初始化引擎
-        await Engine3D.init({
-            renderLoop: () => {
-                console.log(Time.frame / 60);
-            }
-        });
+        await Engine3D.init();
         //注册shader
         registerShader();
         //新建一个场景 添加FPS和灰色背景
@@ -35,7 +31,7 @@ class ScreenCoord {
             let plane = new Object3D();
             plane.rotationX = 90;
             let mr = plane.addComponent(MeshRenderer);
-            mr.geometry = new PlaneGeometry(30, 30);
+            mr.geometry = new PlaneGeometry(50, 50);
             mr.material = mat;
             scene.addChild(plane);
         }

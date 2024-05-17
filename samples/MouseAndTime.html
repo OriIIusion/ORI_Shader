@@ -26,10 +26,9 @@
 </head>
 <body>
     <div id="title">
-        MouseAndTime<br>
-        然后除以画布尺寸将坐标限制在0~1<br>
-        试着放大Plane使之占满整个屏幕<br>
-        左上角为(0,0)黑色 右上角(1,0)红色 左下角(0,1)绿色 右下角(1,1)黄色
+        本案例使用了GlobalUniform中的鼠标坐标和时间属性<br>
+        这些全局变量在大多数shader中都会用到,所以Orillusion将常用的数据都封装在这个shader中<br>
+        而我们只需要使用#include即可将注册过的shdaer导入自己的shader来复用代码
     </div>
     <script type="module" src="/src/scripts/MouseAndTime.ts"></script>
 </body>

@@ -55,6 +55,6 @@ fn VertMain(vertex:VertexAttributes) -> @builtin(position) vec4<f32> {
 @fragment
 fn FragMain(@builtin(position) ScreenPos : vec4<f32>) -> @location(0) vec4<f32>{
     let screenPos = ScreenPos.xy;
-    let normalizedScreenPos = screenPos/vec2(globalUniform.windowHeight,globalUniform.windowHeight);
+    let normalizedScreenPos = screenPos/vec2(globalUniform.windowWidth,globalUniform.windowHeight);
     return vec4(normalizedScreenPos,0,1);
 }
