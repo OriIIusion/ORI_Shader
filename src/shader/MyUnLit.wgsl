@@ -1,3 +1,5 @@
+//思考：mvp矩阵从哪来？顶点坐标从哪来？材质颜色从哪来？顶点着色器和片元着色器输出了什么数据？传递给谁？
+
 //全局变量 projMat是投影矩阵 viewMat是视图矩阵
 struct GlobalUniform {
     projMat: mat4x4<f32>,
@@ -25,7 +27,7 @@ var<uniform> materialUniform: MaterialUniform;
 //函数名可以随便取，但应该和RenderShaderPass中的设置的入口函数名称相同，片元着色器同理。
 //以@builtin(instance_index)声明的index可以获得当前模型的索引值，在函数中models.matrix[index]则可以获得本模型的model矩阵
 //以@location(0)声明的position可以获得模型的顶点位置
-//函数返回应指向@builtin(position) 以传递给片元着色器
+//函数返回应指向@builtin(position) 传递给渲染管线以进行下一步的裁剪工作
 //posClip就是裁剪空间坐标，通过模型顶点*mvp矩阵得到，本函数中乘的顺序为p*v*m*pos,顺序不可颠倒。
 @vertex
 fn VertMain(@builtin(instance_index) index : u32, @location(0) position : vec3<f32>) -> @builtin(position) vec4<f32> {
