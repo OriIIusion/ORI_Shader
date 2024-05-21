@@ -3,7 +3,7 @@ import { Stats } from "@orillusion/stats";
 import { MouseAndTimeMaterial } from "../material/MouseAndTimeMaterial";
 import { registerShader } from "../shader/registerShader";
 
-class ScreenCoord {
+class MouseAndTime {
     async run() {
         //初始化引擎
         await Engine3D.init();
@@ -45,4 +45,4 @@ class ScreenCoord {
         Engine3D.startRenderView(view);
     }
 }
-new ScreenCoord().run();
+new MouseAndTime().run();

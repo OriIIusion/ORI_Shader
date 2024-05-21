@@ -3,8 +3,8 @@
 //直接复用Orillusion内置shader，GlobalUniform包含了全局变量结构体的定义和绑定，WorldMatrixUniform包含了模型矩阵结构体的定义和绑定。
 //下面两行代码等同于我们在前几个shader中开头的对于全局变量和模型矩阵的定义和绑定，提高了代码复用性和简洁性
 //另外，自己定义GlobalUniform结构体容易把属性的顺序与数据类型写错，如果自己定义的GlobalUniform与内置GlobalUniform不一样，我们获取到的数据就可能是错的
-#include "GlobalUniform"
-#include "WorldMatrixUniform"
+#include "GlobalUniform"//https://github.com/Orillusion/orillusion/blob/main/src/assets/shader/core/common/GlobalUniform.ts
+#include "WorldMatrixUniform"//https://github.com/Orillusion/orillusion/blob/main/src/assets/shader/core/common/WorldMatrixUniform.ts
 
 //定义顶点着色器的输入结构体，这样就可以将多个参数打包到一个结构体中
 struct VertexAttributes{
