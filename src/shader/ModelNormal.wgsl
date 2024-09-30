@@ -37,10 +37,14 @@ fn VertMain(vertex:VertexAttributes) -> VertexOutput {
     vertexOut.uv = vertex.uv;
     return vertexOut;
 }
-
+struct FragmentOutput {
+            @location(auto) color: vec4<f32>,
+            @location(auto) gBuffer: vec4<f32>
+        };
+var<private> fragmentOutput: FragmentOutput;
 //片元着色器 将顶点着色器传过来的法线值输出，试着将uv也输出看看
 @fragment
-fn FragMain(fragin:VertexOutput) -> @location(0) vec4<f32>{
-    return vec4(fragin.normal,1);
-    //return vec4(fragin.uv,0,1);
+fn FragMain(fragin:VertexOutput) -> FragmentOutput{
+    fragmentOutput.color = vec4(fragin.normal,1);
+    return fragmentOutput;
 }

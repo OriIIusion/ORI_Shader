@@ -54,9 +54,15 @@ fn VertMain(vertex:VertexAttributes) -> @builtin(position) vec4<f32> {
 //片元着色器 通过@builtin(position)的xy值获取当前像素的屏幕坐标 
 //再使用屏幕坐标除以画布的尺寸，使坐标值限制在0~1之间，将处理后的坐标值输出
 //如果模型铺满整个屏幕，则左上角为(0，0)黑色   右上角(1，0)红色     左下角(0，1)绿色      右下角(1，1)黄色
+struct FragmentOutput {
+            @location(auto) color: vec4<f32>,
+            @location(auto) gBuffer: vec4<f32>
+        };
+var<private> fragmentOutput: FragmentOutput;
 @fragment
-fn FragMain(@builtin(position) ScreenPos : vec4<f32>) -> @location(0) vec4<f32>{
+fn FragMain(@builtin(position) ScreenPos : vec4<f32>) -> FragmentOutput{
     let screenPos = ScreenPos.xy;
     let normalizedScreenPos = screenPos/vec2(globalUniform.windowWidth,globalUniform.windowHeight);
-    return vec4(normalizedScreenPos,0,1);
+    fragmentOutput.color = vec4(normalizedScreenPos,0,1);
+    return fragmentOutput;
 }

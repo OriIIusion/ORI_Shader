@@ -4,6 +4,7 @@ import ModelNormal from "./ModelNormal.wgsl?raw";
 import ScreenCoord from "./ScreenCoord.wgsl?raw";
 import MouseAndTime from "./MouseAndTime.wgsl?raw";
 import MyLambert from "./MyLambert.wgsl?raw";
+import TestUnLit from "./TestUnLit.wgsl?raw";
 
 export function registerShader() {
     ShaderLib.register("MyUnLit", MyUnLit);
@@ -11,4 +12,5 @@ export function registerShader() {
     ShaderLib.register("ScreenCoord", ScreenCoord);
     ShaderLib.register("MouseAndTime", MouseAndTime);
     ShaderLib.register("MyLambert", MyLambert);
+    ShaderLib.register("TestUnLit", TestUnLit);
 }

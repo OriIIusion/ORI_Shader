@@ -44,12 +44,18 @@ fn VertMain(vertex : VertexAttributes) -> VertexOutput {
 
 //片元着色器 前面应该加上@fragment以表明这就是片元着色器的入口函数
 //函数返回指向@location(0) vec4<f32> 即最终显示在屏幕的颜色
+struct FragmentOutput {
+            @location(auto) color: vec4<f32>,
+            @location(auto) gBuffer: vec4<f32>
+        };
+var<private> fragmentOutput: FragmentOutput;
 @fragment
-fn FragMain(fragIn : VertexOutput) -> @location(0) vec4<f32>{
+fn FragMain(fragIn : VertexOutput) -> FragmentOutput{
     let n = normalize(fragIn.worldNormal);
     let l = normalize(materialUniform.lightPosition);
     let ambient = materialUniform.ambientColor.xyz;
     let diffuse = materialUniform.baseColor.xyz * materialUniform.lightColor.xyz * saturate(dot(n,l));
     let color = ambient+diffuse;
-    return vec4(color,1);
+    fragmentOutput.color = vec4(color,1);
+    return fragmentOutput;
 }

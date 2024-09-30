@@ -18,10 +18,14 @@ fn VertMain(vertex:VertexAttributes) -> @builtin(position) vec4<f32> {
     let ClipPos = globalUniform.projMat * globalUniform.viewMat * models.matrix[vertex.index] * vec4<f32>(vertex.position.xyz, 1.0);
     return ClipPos;
 }
-
+struct FragmentOutput {
+            @location(auto) color: vec4<f32>,
+            @location(auto) gBuffer: vec4<f32>
+        };
+var<private> fragmentOutput: FragmentOutput;
 //片元着色器
 @fragment
-fn FragMain(@builtin(position) ScreenPos : vec4<f32>) -> @location(0) vec4<f32>{
+fn FragMain(@builtin(position) ScreenPos : vec4<f32>) -> FragmentOutput{
     //获取该像素的屏幕坐标并除以画布尺寸的宽度，就可得到0~1范围内的像素坐标
     //同时除以画布尺寸的宽度，像素在x和y方向的距离是一样的，便于后面画圆
     let screenPos = ScreenPos.xy;
@@ -38,10 +42,12 @@ fn FragMain(@builtin(position) ScreenPos : vec4<f32>) -> @location(0) vec4<f32>{
     //奇数一个色 偶数一个色
     if(num%2==0)
     {
-        return vec4(0.8,0.3,0.1,1);
+        fragmentOutput.color = vec4(0.8,0.3,0.1,1);
+        return fragmentOutput;
     }
     else
     {
-        return vec4(0.6,0.7,0.2,1);
+        fragmentOutput.color =vec4(0.6,0.7,0.2,1);
+        return fragmentOutput;
     }
 }

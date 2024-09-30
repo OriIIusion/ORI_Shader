@@ -37,7 +37,13 @@ fn VertMain(@builtin(instance_index) index : u32, @location(0) position : vec3<f
 
 //片元着色器 前面应该加上@fragment以表明这就是片元着色器的入口函数
 //函数返回指向@location(0) vec4<f32> 即最终显示在屏幕的颜色
+struct FragmentOutput {
+            @location(auto) color: vec4<f32>,
+            @location(auto) gBuffer: vec4<f32>
+        };
+var<private> fragmentOutput: FragmentOutput;
 @fragment
-fn FragMain() -> @location(0) vec4<f32>{
-    return materialUniform.baseColor;
+fn FragMain() -> FragmentOutput{
+    fragmentOutput.color = materialUniform.baseColor;
+    return fragmentOutput;
 }
